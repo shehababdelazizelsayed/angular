@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h2>User List</h2>
+  <button class="btn btn-primary mb-3" (click)="showUsers = !showUsers">
+    {{ showUsers ? 'Hide Users' : 'Show Users' }}
+  </button>
+
+  <div *ngIf="showUsers">
+    <div
+      class="card mb-2 p-3"
+      *ngFor="let user of users"
+      [ngClass]="{ 'border-success': user.active, 'border-secondary': !user.active }"
+      [ngStyle]="{ color: user.active ? 'green' : 'gray' }"
+      appHighlight
+      [highlightColor]="user.active ? '#d4edda' : '#f8d7da'"
+    >
+      <strong>{{ user.name }}</strong>
+      <span class="badge float-end" [ngClass]="user.active ? 'bg-success' : 'bg-secondary'">
+        {{ user.active ? 'Active' : 'Inactive' }}
+      </span>
+    </div>
+  </div>
+</div>
