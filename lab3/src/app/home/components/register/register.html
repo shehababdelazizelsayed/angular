@@ -1,0 +1,57 @@
+<div
+  class="register-container"
+  style="display: flex; justify-content: center; align-items: center; height: 100vh"
+>
+  <mat-card class="mat-elevation-z8" style="width: 480px; padding: 24px">
+    <h2 class="text-center" style="text-align: center; margin-bottom: 20px">Register</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="w-100" style="width: 100%; margin-bottom: 16px">
+        <mat-label>Email address</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-error *ngIf="submitted && f['email'].errors">Valid email is required</mat-error>
+      </mat-form-field>
+
+      <!-- Name -->
+      <mat-form-field appearance="outline" class="w-100" style="width: 100%; margin-bottom: 16px">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name" />
+        <mat-error *ngIf="submitted && f['name'].errors">Name is required</mat-error>
+      </mat-form-field>
+
+      <!-- Username -->
+      <mat-form-field appearance="outline" class="w-100" style="width: 100%; margin-bottom: 16px">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" formControlName="username" />
+        <mat-error *ngIf="submitted && f['username'].errors">
+          Username required (no spaces)
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline" class="w-100" style="width: 100%; margin-bottom: 16px">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" />
+        <mat-hint align="start"> Must contain upper, lower, digit, and special (@%$#) </mat-hint>
+        <mat-error *ngIf="submitted && f['password'].errors"> Invalid password format </mat-error>
+      </mat-form-field>
+
+      <!-- Confirm Password -->
+      <mat-form-field appearance="outline" class="w-100" style="width: 100%; margin-bottom: 16px">
+        <mat-label>Confirm Password</mat-label>
+        <input matInput type="password" formControlName="confirmPassword" />
+        <mat-error *ngIf="submitted && registerForm.errors?.['mismatch']">
+          Passwords do not match
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" class="w-100" type="submit">Register</button>
+
+      <p style="text-align: center; margin-top: 16px">
+        Already have an account?
+        <a routerLink="/login">Login</a>
+      </p>
+    </form>
+  </mat-card>
+</div>
